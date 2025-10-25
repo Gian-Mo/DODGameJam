@@ -1,0 +1,70 @@
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
+
+public class MainMenuManager : MonoBehaviour
+{
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject creditsMenu;
+
+    public InputActionReference back;
+
+    void Start()
+    {
+       
+
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Game");
+      
+    }
+
+    public void Credits()
+    {
+        mainMenu.SetActive(false);
+        creditsMenu.SetActive(true);
+        ButtonController.instance.ButtonClear();
+
+    }
+
+    void Back(InputAction.CallbackContext context)
+   {
+        creditsMenu.SetActive(false);
+        mainMenu.SetActive(true);
+        ButtonController.instance.ButtonClear();
+   }
+    
+
+    public void Quit()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+
+    #elif UNITY_WEBGL
+        Application.OpenURL("https://rodoc0222.itch.io/dark-dagger");
+    #else
+        Application.Quit();
+
+
+    #endif
+
+    }
+
+    private void OnEnable()
+    {
+        back.action.started += Back;
+    }
+    private void OnDisable()
+    {
+        back.action.started -= Back;
+    }
+
+
+}
