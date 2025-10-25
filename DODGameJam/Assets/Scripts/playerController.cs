@@ -106,6 +106,8 @@ public class playerController : MonoBehaviour
             Debug.Log(hit.collider.name);
             return true;
         }
+        selectingTimer = 0;
+        UpdateSelectBar();
         return false;
     }
 
