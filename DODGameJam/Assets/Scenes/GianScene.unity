@@ -1344,14 +1344,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 9018323237267587109, guid: 100df8fb35e6ae1408ef3ec504e1336a, type: 3}
-      propertyPath: selectingDur
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9018323237267587109, guid: 100df8fb35e6ae1408ef3ec504e1336a, type: 3}
-      propertyPath: selectables.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

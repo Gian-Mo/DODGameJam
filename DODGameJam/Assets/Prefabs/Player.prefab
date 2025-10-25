@@ -134,6 +134,10 @@ MonoBehaviour:
   jumpSpeed: 5
   gravity: 9
   shootDistance: 10
+  selectables:
+    serializedVersion: 2
+    m_Bits: 64
+  selectingDur: 2
   move: {fileID: -745710076370072306, guid: 2296d9bd9dceaa6498029adedfae1eea, type: 3}
   jump: {fileID: -3800191671513634630, guid: 2296d9bd9dceaa6498029adedfae1eea, type: 3}
   shoot: {fileID: -1202062925726378902, guid: 2296d9bd9dceaa6498029adedfae1eea, type: 3}
