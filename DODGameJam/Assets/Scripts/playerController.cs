@@ -26,6 +26,8 @@ public class playerController : MonoBehaviour
     public int evidence, doors;
     public Transform spawnPoint;
     public bool resetting = false;
+
+    ISelect selector;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,7 +58,8 @@ public class playerController : MonoBehaviour
                 UpdateSelectBar();
                 if (selectingTimer >= selectingDur)
                 {
-                    
+                    selector.Selected();
+
                     Debug.Log("It Works");
 
                 }
@@ -108,8 +111,10 @@ public class playerController : MonoBehaviour
         {
             Debug.Log(hit.collider.name);
             GameManager.instance.click.SetActive(true);
+           selector = hit.collider.GetComponent<ISelect>();
             return true;
         }
+        selector = null;
         selectingTimer = 0;
         UpdateSelectBar();
         GameManager.instance.click.SetActive(false);
