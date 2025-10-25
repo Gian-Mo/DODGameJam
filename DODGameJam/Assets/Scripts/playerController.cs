@@ -104,10 +104,12 @@ public class playerController : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance,selectables))
         {
             Debug.Log(hit.collider.name);
+            GameManager.instance.click.SetActive(true);
             return true;
         }
         selectingTimer = 0;
         UpdateSelectBar();
+        GameManager.instance.click.SetActive(false);
         return false;
     }
 

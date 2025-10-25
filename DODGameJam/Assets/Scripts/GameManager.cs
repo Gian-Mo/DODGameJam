@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public InputActionReference menuOut;
 
    public Image selectedBar;
+    public GameObject click;
 
     public bool isPaused = false;
      float timesScaleOrig;
