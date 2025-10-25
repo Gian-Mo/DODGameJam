@@ -9,15 +9,19 @@ public class playerController : MonoBehaviour
     [SerializeField] int jumpSpeed;
     [SerializeField] float gravity;
     [SerializeField] int shootDistance;
+    [SerializeField] LayerMask selectables;
+    [SerializeField] float selectingDur;
 
     public InputActionReference move;
     public InputActionReference jump;
     public InputActionReference shoot; //Select
    public Vector3 moveDirection;
    public Vector3 playerVel;
-    bool ableToShoot;
+    bool selecting;
     bool ableToGravity;
     bool selected;
+
+    float selectingTimer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,11 +42,24 @@ public class playerController : MonoBehaviour
     void Movement()
     {
 
-      ControllerMovement();
+        ControllerMovement();
+        if (CanSelect())
+        {
 
-      
+            if (selecting)
+            {
+                selectingTimer += Time.deltaTime;
+
+                if (selectingTimer >= selectingDur)
+                {
+                    Debug.Log("It Works");
+
+                }
+
+            }
+
+        }
     }
-
  
  void ControllerMovement()
   {
@@ -78,15 +95,16 @@ public class playerController : MonoBehaviour
     }
    
 
-    void CanSelect()
+    bool CanSelect()
     {
         RaycastHit hit;
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward);
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance,selectables))
         {
-
             Debug.Log(hit.collider.name);
+            return true;
         }
+        return false;
     }
 
     private void OnEnable()
@@ -117,11 +135,12 @@ public class playerController : MonoBehaviour
     }
     void ShootTrue(InputAction.CallbackContext context)
     {
-        ableToShoot = true;
+        selecting = true;
     }
     void ShootFalse(InputAction.CallbackContext context)
     {
-        ableToShoot = false;
+        selecting = false;
+        selectingTimer = 0;
      
     }
 

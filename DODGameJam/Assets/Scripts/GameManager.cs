@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-
  
     public PlayerInput PlayerInput;
     [SerializeField] ButtonController buttonController;
@@ -30,6 +29,7 @@ public class GameManager : MonoBehaviour
     public InputActionReference menuIn;
     public InputActionReference menuOut;
 
+   public Image selectedBar;
 
     public bool isPaused = false;
      float timesScaleOrig;
