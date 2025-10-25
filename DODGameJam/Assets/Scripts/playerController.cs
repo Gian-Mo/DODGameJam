@@ -23,6 +23,9 @@ public class playerController : MonoBehaviour
 
     float selectingTimer;
 
+    public int evidence, doors;
+    public Transform spawnPoint;
+    public bool resetting = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -163,5 +166,21 @@ public class playerController : MonoBehaviour
         ableToGravity = false;
       yield return new WaitForSeconds(0.01f);
         ableToGravity = true;
+    }
+    public void SpawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
+        controller.enabled = true;
+    }
+    public void SavePlayerData()
+    {
+        if (ObjectiveTracker.Instance != null)
+        {
+            ObjectiveTracker.Instance.currentSave.evidence = evidence;
+            ObjectiveTracker.Instance.currentSave.doors = doors;
+            ObjectiveTracker.Instance.SaveGame();
+        }
     }
 }
