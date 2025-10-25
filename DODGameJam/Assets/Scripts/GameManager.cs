@@ -27,11 +27,12 @@ public class GameManager : MonoBehaviour
     public playerController playerScript;
 
 
-    public InputActionReference menu;
+    public InputActionReference menuIn;
+    public InputActionReference menuOut;
 
 
     public bool isPaused = false;
-    public float timesScaleOrig;
+     float timesScaleOrig;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +45,6 @@ public class GameManager : MonoBehaviour
         timesScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
-        PlayerInput = player.GetComponent<PlayerInput>();
        
     }
 
@@ -70,7 +70,8 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
 
         Time.timeScale = timesScaleOrig;
-
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
         PlayerInput.SwitchCurrentActionMap("Gameplay");
@@ -134,14 +135,15 @@ public class GameManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        menu.action.started += Pause;
-     
+        menuIn.action.started += Pause;
+        menuOut.action.started += Pause;
+        
 
     }
     private void OnDisable()
     {
-        menu.action.started -= Pause;
-    
+        menuIn.action.started -= Pause;
+        menuOut.action.started -= Pause;
 
     }
 

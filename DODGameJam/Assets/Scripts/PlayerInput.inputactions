@@ -116,7 +116,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";GamePlay",
+                    "groups": "KnM",
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -127,7 +127,7 @@
                     "path": "<Keyboard>/{Cancel}",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";GamePlay",
+                    "groups": "KnM",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -138,7 +138,7 @@
                     "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";GamePlay",
+                    "groups": "KnM",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -193,7 +193,7 @@
                     "path": "<Keyboard>/{Cancel}",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;KnM",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -204,7 +204,7 @@
                     "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;KnM",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -280,8 +280,8 @@
     ],
     "controlSchemes": [
         {
-            "name": "GamePlay",
-            "bindingGroup": "GamePlay",
+            "name": "KnM",
+            "bindingGroup": "KnM",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
