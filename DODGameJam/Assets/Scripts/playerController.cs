@@ -50,8 +50,10 @@ public class playerController : MonoBehaviour
             {
                 selectingTimer += Time.deltaTime;
 
+                UpdateSelectBar();
                 if (selectingTimer >= selectingDur)
                 {
+                    
                     Debug.Log("It Works");
 
                 }
@@ -107,6 +109,11 @@ public class playerController : MonoBehaviour
         return false;
     }
 
+    void UpdateSelectBar()
+    {
+        GameManager.instance.selectedBar.fillAmount = selectingTimer / selectingDur;
+    }
+
     private void OnEnable()
     {
         EnableShoot(true);
@@ -141,9 +148,11 @@ public class playerController : MonoBehaviour
     {
         selecting = false;
         selectingTimer = 0;
-     
+        GameManager.instance.selectedBar.fillAmount = 0;
+
     }
 
+    
 
     IEnumerator turnOffGravity()
     {
