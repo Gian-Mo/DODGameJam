@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class playerController : MonoBehaviour
@@ -22,6 +23,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
       
+        ableToGravity = true;
     }
 
     // Update is called once per frame
@@ -30,7 +32,6 @@ public class playerController : MonoBehaviour
     {
 
         Movement();
-        ableToGravity = true;
 
     }
 
@@ -70,7 +71,8 @@ public class playerController : MonoBehaviour
 
     void Jump(InputAction.CallbackContext context)
     {
-      
+
+        StartCoroutine(turnOffGravity());
         playerVel.y = jumpSpeed;
 
     }
@@ -123,4 +125,11 @@ public class playerController : MonoBehaviour
      
     }
 
+
+    IEnumerator turnOffGravity()
+    {
+        ableToGravity = false;
+      yield return new WaitForSeconds(0.01f);
+        ableToGravity = true;
+    }
 }
