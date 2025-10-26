@@ -9,16 +9,25 @@ public class playerController : MonoBehaviour
     [SerializeField] int jumpSpeed;
     [SerializeField] float gravity;
     [SerializeField] int shootDistance;
+    [SerializeField] LayerMask selectables;
+    [SerializeField] float selectingDur;
 
     public InputActionReference move;
     public InputActionReference jump;
     public InputActionReference shoot; //Select
    public Vector3 moveDirection;
    public Vector3 playerVel;
-    bool ableToShoot;
+    bool selecting;
     bool ableToGravity;
     bool selected;
 
+    float selectingTimer;
+
+    public int evidence, doors;
+    public Transform spawnPoint;
+    public bool resetting = false;
+
+    ISelect selector;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,11 +47,27 @@ public class playerController : MonoBehaviour
     void Movement()
     {
 
-      ControllerMovement();
+        ControllerMovement();
+        if (CanSelect())
+        {
 
-      
+            if (selecting)
+            {
+                selectingTimer += Time.deltaTime;
+
+                UpdateSelectBar();
+                if (selectingTimer >= selectingDur)
+                {
+                    selector.Selected();
+
+                    Debug.Log("It Works");
+
+                }
+
+            }
+
+        }
     }
-
  
  void ControllerMovement()
   {
@@ -78,15 +103,27 @@ public class playerController : MonoBehaviour
     }
    
 
-    void CanSelect()
+    bool CanSelect()
     {
         RaycastHit hit;
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward);
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance,selectables))
         {
-
             Debug.Log(hit.collider.name);
+            GameManager.instance.click.SetActive(true);
+           selector = hit.collider.GetComponent<ISelect>();
+            return true;
         }
+        selector = null;
+        selectingTimer = 0;
+        UpdateSelectBar();
+        GameManager.instance.click.SetActive(false);
+        return false;
+    }
+
+    void UpdateSelectBar()
+    {
+        GameManager.instance.selectedBar.fillAmount = selectingTimer / selectingDur;
     }
 
     private void OnEnable()
@@ -117,19 +154,38 @@ public class playerController : MonoBehaviour
     }
     void ShootTrue(InputAction.CallbackContext context)
     {
-        ableToShoot = true;
+        selecting = true;
     }
     void ShootFalse(InputAction.CallbackContext context)
     {
-        ableToShoot = false;
-     
+        selecting = false;
+        selectingTimer = 0;
+        GameManager.instance.selectedBar.fillAmount = 0;
+
     }
 
+    
 
     IEnumerator turnOffGravity()
     {
         ableToGravity = false;
       yield return new WaitForSeconds(0.01f);
         ableToGravity = true;
+    }
+    public void SpawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
+        controller.enabled = true;
+    }
+    public void SavePlayerData()
+    {
+        if (ObjectiveTracker.Instance != null)
+        {
+            ObjectiveTracker.Instance.currentSave.evidence = evidence;
+            ObjectiveTracker.Instance.currentSave.doors = doors;
+            ObjectiveTracker.Instance.SaveGame();
+        }
     }
 }

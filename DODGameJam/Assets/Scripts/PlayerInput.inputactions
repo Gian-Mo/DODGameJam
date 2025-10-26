@@ -259,7 +259,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";KnM",
                     "action": "Enter",
                     "isComposite": false,
                     "isPartOfComposite": false
