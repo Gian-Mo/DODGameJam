@@ -99,7 +99,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cube",
-                "value": "{\"m_Value\":{\"x\":4.282131195068359,\"y\":2.9312996864318849,\"z\":3.551288604736328}}"
+                "value": "{\"m_Value\":{\"x\":1.479302167892456,\"y\":1.9514957666397095,\"z\":3.81665301322937}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -230,6 +230,11 @@
                 "type": "UnityEngine.ProBuilder.ExtrudeMethod, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "editor.extrudeMethod",
                 "value": "{\"m_Value\":2}"
+            },
+            {
+                "type": "System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "BevelEdges.size",
+                "value": "{\"m_Value\":0.20000000298023225}"
             }
         ]
     }
