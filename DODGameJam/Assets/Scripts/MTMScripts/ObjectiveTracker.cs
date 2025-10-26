@@ -168,7 +168,7 @@ public class ObjectiveTracker : MonoBehaviour
         if(!currentSave.collectedEvidence.Contains(item)) currentSave.collectedEvidence.Add(item);
         CheckVictoryCondition();
     }
-    private void CheckVictoryCondition()
+    public void CheckVictoryCondition()
     {
         string[] items = new string[] { "Knife", "LipStick", "LoveLetter" };
         foreach (string item in items) {

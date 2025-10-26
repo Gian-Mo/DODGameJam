@@ -14,6 +14,7 @@ public class ObjectiveManager : MonoBehaviour , ISelect
             {
                 ObjectiveTracker.Instance.MarkItemCollected(item);
                 Destroy(itemPrefab);
+                ObjectiveTracker.Instance.evidenceCount++;
             }
         }
     }

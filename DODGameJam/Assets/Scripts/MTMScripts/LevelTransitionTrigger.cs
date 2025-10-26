@@ -35,6 +35,7 @@ public class LevelTransitionTrigger : MonoBehaviour, ISelect
     public void Selected()
     {
         if (playerController.teleport) StartCoroutine(Transition());
+        ObjectiveTracker.Instance.doorsInteractions++;
     }
 
 }
