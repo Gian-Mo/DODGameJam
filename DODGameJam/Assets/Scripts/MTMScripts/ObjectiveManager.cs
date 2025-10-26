@@ -14,7 +14,8 @@ public class ObjectiveManager : MonoBehaviour , ISelect
             {
                 ObjectiveTracker.Instance.MarkItemCollected(item);
                 Destroy(itemPrefab);
-                ObjectiveTracker.Instance.evidenceCount++;
+                GameManager.instance.playerScript.pickUp.resource = GameManager.instance.playerScript.sounds[1];
+                GameManager.instance.playerScript.pickUp.Play();
             }
         }
     }

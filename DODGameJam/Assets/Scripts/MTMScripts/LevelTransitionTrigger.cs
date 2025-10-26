@@ -35,7 +35,10 @@ public class LevelTransitionTrigger : MonoBehaviour, ISelect
     public void Selected()
     {
         if (playerController.teleport) StartCoroutine(Transition());
-        ObjectiveTracker.Instance.doorsInteractions++;
+        playerController.pickUp.resource = playerController.sounds[2];
+        playerController.pickUp.Play();
+        playerController.pickUp.resource = playerController.sounds[3];
+        playerController.pickUp.Play();
     }
 
 }
