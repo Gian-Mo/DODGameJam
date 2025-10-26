@@ -12,8 +12,6 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject creditsMenu;
-    public AudioResource sound;
-    public AudioSource source;
 
     public InputActionReference back;
 
