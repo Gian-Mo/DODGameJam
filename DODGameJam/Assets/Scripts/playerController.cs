@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour
     public int evidence, doors;
     public Transform spawnPoint;
     public bool resetting = false;
+    public bool teleport = true;
 
     ISelect selector;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -112,8 +113,10 @@ public class playerController : MonoBehaviour
             Debug.Log(hit.collider.name);
             GameManager.instance.click.SetActive(true);
            selector = hit.collider.GetComponent<ISelect>();
+          //  teleport = true;
             return true;
         }
+      //  teleport = false;
         selector = null;
         selectingTimer = 0;
         UpdateSelectBar();
@@ -188,4 +191,8 @@ public class playerController : MonoBehaviour
             ObjectiveTracker.Instance.SaveGame();
         }
     }
+    //public void UpdateEvidenceCount()
+    //{
+    //    if() { }
+    //}
 }
