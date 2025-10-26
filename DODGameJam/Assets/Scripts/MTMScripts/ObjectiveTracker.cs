@@ -10,7 +10,7 @@ public class ObjectiveTracker : MonoBehaviour
 {
     public static ObjectiveTracker Instance { get; private set; }
     public playerController player; public Transform spawnpoint;
-    private List<GameObject> evidence = new List<GameObject>();
+    public List<GameObject> evidence = new List<GameObject>();
     public delegate void EvidenceFound();
     public event EvidenceFound evidenceFound;
     public bool isEnd = false; public bool isVictoryScene = false;
