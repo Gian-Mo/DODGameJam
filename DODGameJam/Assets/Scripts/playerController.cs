@@ -1,6 +1,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 public class playerController : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDistance;
     [SerializeField] LayerMask selectables;
     [SerializeField] float selectingDur;
+
+    [SerializeField] AudioSource walk;
+    public AudioSource pickUp;
+
+    public AudioResource[] sounds;
 
     public InputActionReference move;
     public InputActionReference jump;
@@ -56,6 +62,8 @@ public class playerController : MonoBehaviour
             {
                 selectingTimer += Time.deltaTime;
 
+                 pickUp.Play();
+
                 UpdateSelectBar();
                 if (selectingTimer >= selectingDur)
                 {
@@ -84,7 +92,16 @@ public class playerController : MonoBehaviour
           }
       }
 
-      Vector3 inputDirection = move.action.ReadValue<Vector3>().normalized * speed * Time.deltaTime;
+        if (move.action.IsPressed())
+        {
+            walk.enabled = true;
+        }
+        else
+        {
+            walk.enabled = false;
+        }
+
+        Vector3 inputDirection = move.action.ReadValue<Vector3>().normalized * speed * Time.deltaTime;
 
       moveDirection = transform.TransformDirection(inputDirection);
 
@@ -158,6 +175,7 @@ public class playerController : MonoBehaviour
     void ShootTrue(InputAction.CallbackContext context)
     {
         selecting = true;
+        pickUp.resource = sounds[0];
     }
     void ShootFalse(InputAction.CallbackContext context)
     {

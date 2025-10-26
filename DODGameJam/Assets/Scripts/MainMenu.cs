@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,8 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject creditsMenu;
+    public AudioResource sound;
+    public AudioSource source;
 
     public InputActionReference back;
 
