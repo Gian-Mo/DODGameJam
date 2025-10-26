@@ -113,10 +113,10 @@ public class playerController : MonoBehaviour
             Debug.Log(hit.collider.name);
             GameManager.instance.click.SetActive(true);
            selector = hit.collider.GetComponent<ISelect>();
-          //  teleport = true;
+          
             return true;
         }
-      //  teleport = false;
+      
         selector = null;
         selectingTimer = 0;
         UpdateSelectBar();
