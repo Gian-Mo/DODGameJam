@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 using Unity.Collections;
 using Unity.VisualScripting;
 
-public class ObjectiveTracker : MonoBehaviour
+public class ObjectiveTracker : MonoBehaviour 
 {
     public static ObjectiveTracker Instance { get; private set; }
     public playerController player; public Transform spawnpoint;
-    private List<GameObject> evidence = new List<GameObject>();
+    public List<GameObject> evidence = new List<GameObject>();
     public delegate void EvidenceFound();
     public event EvidenceFound evidenceFound;
     public bool isEnd = false; public bool isVictoryScene = false;
@@ -160,7 +160,7 @@ public class ObjectiveTracker : MonoBehaviour
     }
     public int CollectedEvidence()
     {
-        if (currentSave.collectedEvidence.Contains("Knife") || currentSave.collectedEvidence.Contains("Lipstick") || currentSave.collectedEvidence.Contains("LoveLetter")) evidenceCount++;
+        if (currentSave.collectedEvidence.Contains("Knife") || currentSave.collectedEvidence.Contains("LipStick") || currentSave.collectedEvidence.Contains("LoveLetter")) evidenceCount++;
         return evidenceCount;
     }
     public void MarkItemCollected(string item)
@@ -170,7 +170,7 @@ public class ObjectiveTracker : MonoBehaviour
     }
     private void CheckVictoryCondition()
     {
-        string[] items = new string[] { "Knife", "Lipstick", "LoveLetter" };
+        string[] items = new string[] { "Knife", "LipStick", "LoveLetter" };
         foreach (string item in items) {
             if (!currentSave.collectedEvidence.Contains(item)) return;
         }
