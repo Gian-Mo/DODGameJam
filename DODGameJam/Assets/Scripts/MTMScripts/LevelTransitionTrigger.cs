@@ -10,7 +10,7 @@ public class LevelTransitionTrigger : MonoBehaviour, ISelect
     //bool canMove;
     private void Awake()
     {
-        playerController = gameObject.GetComponent<playerController>();
+        playerController = GameManager.instance.playerScript;
     }
     //private void OnTriggerEnter(Collider other)
     //{
@@ -27,7 +27,7 @@ public class LevelTransitionTrigger : MonoBehaviour, ISelect
     IEnumerator Transition()
     {
         playerController.enabled = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForEndOfFrame();
         player.transform.position = new Vector3(destination.position.x, destination.position.y, destination.position.z);
         playerController.enabled = true;
     }
